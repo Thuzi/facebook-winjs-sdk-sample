@@ -1,8 +1,8 @@
 # Facebook Sample using facebook-winjs-sdk
 
-This sample demonstrates the use of facebook-winjs-sdk as a Windows 8 Store Javascript Application.
+This sample demonstrates the use of [facebook-winjs-sdk](https://github.com/Thuzi/facebook-winjs-sdk) as a Windows 8 Store Javascript Application.
 
-_Note: This sample does not necessarily demonstrate the best use but rather features of using facebook-winjs-sdk on a Windows 8 Store App. Always remember to handle exceptions._
+_Note: This sample does not necessarily demonstrate the best use but rather features of using [facebook-winjs-sdk](https://github.com/Thuzi/facebook-winjs-sdk) on a Windows 8 Store App. Always remember to handle exceptions._
 
 # Getting started
 
