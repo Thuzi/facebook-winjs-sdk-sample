@@ -21,7 +21,7 @@
     }
 
     function loadData() {
-        FB.api('me', function(res) {
+        FB.api('me', { fields: 'id,name,picture' }, function (res) {
             if(!res || res.error) {
                 console.log(!res ? 'error occurred' : res.error);
                 return;
@@ -29,7 +29,9 @@
 
             $('#hi').html('Hi ' + res.name + '!');
 
-            $('#picture').attr('src', 'http://graph.facebook.com/' + res.id + '/picture');
+            $('#picture').attr('src', res.picture.data.url);
+            // prabir doesnt like this below :)
+            // $('#picture').attr('src', 'http://graph.facebook.com/' + res.id + '/picture');
         });
 
 
