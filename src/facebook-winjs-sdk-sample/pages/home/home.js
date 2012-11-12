@@ -28,7 +28,11 @@
             }
 
             $('#hi').html('Hi ' + res.name + '!');
+
+            $('#picture').attr('src', 'http://graph.facebook.com/' + res.id + '/picture');
         });
+
+
     }
     
 })();
