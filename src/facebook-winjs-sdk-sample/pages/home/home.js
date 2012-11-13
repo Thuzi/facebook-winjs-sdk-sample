@@ -30,7 +30,7 @@
             $('#hi').html('Hi ' + res.name + '!');
 
             $('#picture').attr('src', res.picture.data.url);
-            // prabir doesnt like this below :)
+            // if the user does not have their picture set to public, this will not work below.
             // $('#picture').attr('src', 'http://graph.facebook.com/' + res.id + '/picture');
         });
 
