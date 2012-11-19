@@ -53,7 +53,7 @@
         window.FB = FBWinJS;
 
         FB.options({
-            appId: '',
+            appId: ',
             accessToken: localStorage.getItem('fb_access_token')
         });
 
