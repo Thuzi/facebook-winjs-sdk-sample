@@ -39,7 +39,7 @@
                 new Windows.Foundation.Uri(loginUrl),
                 new Windows.Foundation.Uri(redirectUri))
                 .then(function success(result) {
-                    if(result.responseStatus == 2) {
+                    if (result.responseStatus !== 0) {
                         console.log('error: ' + result.responseerrordetail);
                         return;
                     }
