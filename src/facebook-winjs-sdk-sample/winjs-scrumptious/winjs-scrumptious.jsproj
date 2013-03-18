@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>a10de02e-b0a5-4c5c-b36b-6f8ccc662ada</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateKeyFile>winjs-scrumptious_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="css\base.css" />
+    <Content Include="css\images\ajax-loader.gif" />
+    <Content Include="css\images\icons-18-black.png" />
+    <Content Include="css\images\icons-18-white.png" />
+    <Content Include="css\images\icons-36-black.png" />
+    <Content Include="css\images\icons-36-white.png" />
+    <Content Include="css\jquery.mobile-1.2.0.css" />
+    <Content Include="images\action-eating.png" />
+    <Content Include="images\action-location.png" />
+    <Content Include="images\action-people.png" />
+    <Content Include="images\fblogin.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\meal.gif" />
+    <Content Include="images\meals\cheeseburger%402x.png" />
+    <Content Include="images\meals\cheeseburger-full.png" />
+    <Content Include="images\meals\cheeseburger.png" />
+    <Content Include="images\meals\chinese%402x.png" />
+    <Content Include="images\meals\chinese-full.png" />
+    <Content Include="images\meals\chinese.png" />
+    <Content Include="images\meals\french%402x.png" />
+    <Content Include="images\meals\french-full.png" />
+    <Content Include="images\meals\french.png" />
+    <Content Include="images\meals\hotdog%402x.png" />
+    <Content Include="images\meals\hotdog-full.png" />
+    <Content Include="images\meals\hotdog.png" />
+    <Content Include="images\meals\indian%402x.png" />
+    <Content Include="images\meals\indian-full.png" />
+    <Content Include="images\meals\indian.png" />
+    <Content Include="images\meals\italian%402x.png" />
+    <Content Include="images\meals\italian-full.png" />
+    <Content Include="images\meals\italian.png" />
+    <Content Include="images\meals\pizza%402x.png" />
+    <Content Include="images\meals\pizza-full.png" />
+    <Content Include="images\meals\pizza.png" />
+    <Content Include="images\meals\thai%402x.png" />
+    <Content Include="images\meals\thai-full.png" />
+    <Content Include="images\meals\thai.png" />
+    <Content Include="images\scrumptious_logo.png" />
+    <Content Include="images\scrumptious_logo_large.png" />
+    <Content Include="images\smalllogo.png" />
+    <Content Include="images\splashscreen.png" />
+    <Content Include="images\storelogo.png" />
+    <Content Include="index.html" />
+    <Content Include="js\default.js" />
+    <Content Include="css\default.css" />
+    <Content Include="js\fb.js" />
+    <Content Include="js\jquery-1.8.2-win8-1.0.js" />
+    <Content Include="js\jquery.mobile-1.2.0.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\mustache.js" />
+    <Content Include="packages.config" />
+    <None Include="winjs-scrumptious_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <!-- To modify your build process, add your task inside one of the targets below then uncomment
+       that target and the DisableFastUpToDateCheck PropertyGroup. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  -->
+</Project>
