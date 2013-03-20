@@ -14,7 +14,6 @@ FB.options({
     appId: '438749336206495'
 });
 
-
 var meals = [
 	{
 		"id" : "cheeseburger",
@@ -409,10 +408,13 @@ function getNearby() {
   var l = new Windows.Devices.Geolocation.Geolocator();
   if (l) {
       return l.getGeopositionAsync().then(function (location) {
-          // return WinJS.Promise.wrap(location);
-          var path = '/search?type=place&q=restaurant&center=' + location.coords.latitude + ',' + location.coords.longitude + '&distance=1000&fields=id,name,picture';
-
-          FB.api(path, function (response) {
+          FB.api('search', {
+                  type: 'place',
+                  q: 'restaurant',
+                  center: location.coordinate.latitude + ',' + location.coordinate.longitude,
+                  distance: 1000,
+                  fields: 'id,name,picture'
+              }, function (response) {
               if (!response || response.error) {
                   logResponse("Error fetching nearby place data.");
               } else {
@@ -425,24 +427,6 @@ function getNearby() {
           console.log(error);
       });
   }
-  // First use browser's geolocation API to obtain location
-  //navigator.geolocation.getCurrentPosition(function(location) {
-  //  //curLocation = location;
-  //  logResponse(location);
-
-  //  // Use graph API to search nearby places
-  //  var path = '/search?type=place&q=restaurant&center=' + location.coords.latitude + ',' + location.coords.longitude + '&distance=1000&fields=id,name,picture';
-    
-  //  FB.api(path, function(response) {
-  //  	if (!response || response.error) {
-  //  		logResponse("Error fetching nearby place data.");
-  //  	} else {
-  //  		nearbyPlaces = response.data;
-  //  		logResponse(nearbyPlaces);
-  //  		displayPlaces(nearbyPlaces);
-  //  	}
-  //  });
-  //});
 }
 
 function displayPlaces(places) {
