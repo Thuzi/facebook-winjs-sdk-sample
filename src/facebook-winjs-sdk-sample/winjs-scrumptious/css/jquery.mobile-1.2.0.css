@@ -1110,10 +1110,10 @@ a.ui-link-inherit {
 .ui-mobile-viewport { margin: 0; overflow-x: visible; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 /* Issue #2066 */
 body.ui-mobile-viewport,
-div.ui-mobile-viewport { overflow-x: hidden; }
+ div.ui-mobile-viewport { overflow-x: scroll; } 
 /* "page" containers - full-screen views, one should always be in view post-pageload */
-.ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page { top: 0; left: 0; width: 100%; min-height: 100%; position: absolute; display: none; border: 0; }
-.ui-mobile .ui-page-active { display: block; overflow: visible; }
+.ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page { top: 0px; left:0px; width: 100%; min-height: 100%; position: absolute; display: none; border: 0; overflow:auto; }
+.ui-mobile .ui-page-active { display: block; overflow: auto; }
 /* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
 .ui-page { outline: none; }
 /*orientations from js are available */

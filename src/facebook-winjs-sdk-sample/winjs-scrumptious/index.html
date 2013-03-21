@@ -6,15 +6,19 @@
 
   <title>Scrumptious</title>
         <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <!-- Need to remove so we can scroll -->
+<!--   <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />-->
+  <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
   <link rel="stylesheet"  href="css/jquery.mobile-1.2.0.css" />
   <link rel="stylesheet"  href="css/base.css" />
+    <!-- Need this version so we can use appendChild -->
   <script src="js/jquery-1.8.2-win8-1.0.js"></script>
     <script>
+        // Need to add so we can inject data into the DOM i.e. appendChild
         jQuery.isUnsafe = true;
+
     </script>
   <script src="js/jquery.mobile-1.2.0.js"></script>
   <script src="js/mustache.js"></script>
@@ -66,6 +70,7 @@
       </ul>
     </div>
 
+
       <div id="confirmation"></div>
 			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 				<li><a href="#meals"><img src="images/action-eating.png" /> <h3>What are you eating?</h3><p id="select-meal">Select one</p></a></li>
@@ -73,8 +78,8 @@
 				<li><a href="#friends" onclick="getFriends()"><img src="images/action-people.png" /> <h3>With whom?</h3><p id="select-friends">Select friends</p></a></li>
 			</ul>
 		</div>
-		<div class="submit-button">
-		    <a id="announce" href="#" data-role="button" class="ui-disabled">Announce</a>
+		<div class="submit-button" style=" text-align:center; width: 300px;margin-left: auto; margin-right: auto;">
+		    <a id="announce" href="#" data-role="button" style="width:200px; height:45px;" class="ui-disabled">Announce</a>
 	    </div>
 	</div>
 	<!-- Select a Meal page -->
@@ -97,8 +102,8 @@
 
 		<div data-role="content">
 			<div id="selected_meal"></div>
-			<div class="submit-button">
-				<a id="detail-meal-select" href="#menu" data-role="button">Select</a>
+			<div class="submit-button center-button">
+				<a id="detail-meal-select" href="#menu" data-role="button" style="width:250px; height:45px;">Select</a>
 			</div>
 		</div>
 	</div>
@@ -152,6 +157,7 @@
       <li data-icon="false" data-name="{{ id }}"><a href="#" data-transition="slide"><img src="{{ picture.data.url }}"></img>{{ name }}</a></li>
       {{/.}}
     </script>
+
 
    
 

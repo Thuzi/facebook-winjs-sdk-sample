@@ -18,37 +18,37 @@ var meals = [
 	{
 		"id" : "cheeseburger",
 		"title" : "Cheeseburger",
-		"url" : "http://scrumpit.herokuapp.com/cheeseburger.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/cheeseburger"
 	},
 	{
 		"id" : "chinese",
 		"title" : "Chinese",
-		"url" : "http://scrumpit.herokuapp.com/chinese.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/chinese"
 	},
 	{
 		"id" : "french",
 		"title" : "French",
-		"url" : "http://scrumpit.herokuapp.com/french.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/chinese"
 	},
 	{
 		"id" : "hotdog",
 		"title" : "Hot Dog",
-		"url" : "http://scrumpit.herokuapp.com/hotdog.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/hotdog"
 	},
 	{
 		"id" : "indian",
 		"title" : "Indian",
-		"url" : "http://scrumpit.herokuapp.com/indian.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/indian"
 	},
 	{
 		"id" : "italian",
 		"title" : "Italian",
-		"url" : "http://scrumpit.herokuapp.com/italian.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/italian"
 	},
 	{
 		"id" : "pizza",
 		"title" : "Pizza",
-		"url" : "http://scrumpit.herokuapp.com/pizza.html"
+		"url": "http://nodescrumptious.azurewebsites.net/winjs/meals/italian"
 	},
 ];
 
@@ -354,7 +354,7 @@ function publishOGAction(response) {
 		params.tags = friendIDArrays.join();
 	}
 	logResponse("Publish params " + params);
-	FB.api("/me/scrumptiousios:eat",
+	FB.api("/me/winjsscrumptious:eat",
     	"POST",
     	params,
     	function (response) {

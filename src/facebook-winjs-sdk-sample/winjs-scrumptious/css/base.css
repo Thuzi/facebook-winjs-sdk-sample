@@ -93,6 +93,13 @@ p.intro {
 	margin-right: 20px;
 }
 
+.center-button {
+    text-align:center;
+    width: 300px;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
 .ui-mobile .type-menu-drilldown .ui-content .ui-listview li a img { 
 	width: 57px; 
 	height: 57px;
@@ -103,7 +110,7 @@ p.intro {
 .ui-mobile #selected_meal {
 	margin-left:auto;
 	margin-right:auto;
-	width:50%;
+	width:250px;
 }
 
 .ui-mobile #confirmation {

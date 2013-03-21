@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="a10de02e-b0a5-4c5c-b36b-6f8ccc662ada" Version="1.0.0.0" Publisher="CN=Jim" />
+  <Identity Name="a10de02e-b0a5-4c5c-b36b-6f8ccc662ada" Version="0.0.1.1" Publisher="CN=Jim" />
   <Properties>
     <DisplayName>winjs-scrumptious</DisplayName>
     <PublisherDisplayName>Jim</PublisherDisplayName>
