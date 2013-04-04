@@ -191,12 +191,8 @@ function loginClicked(e) {
     // e.preventDefault();
 
     var redirectUri = 'https://www.facebook.com/connect/login_success.html',
-        loginUrl = 'https://www.facebook.com/dialog/oauth'
-            + '?response_type=token'
-            + '&display=popup'
-            + '&scope=' + encodeURIComponent('user_about_me,publish_actions')
-            + '&redirect_uri=' + encodeURIComponent(redirectUri)
-            + '&client_id=' + FB.options('appId');
+        opt = { appId: '438749336206495', scope:  'user_about_me,publish_actions'  };
+        loginUrl = FB.getLoginUrl(opt);
 
     try {
 
