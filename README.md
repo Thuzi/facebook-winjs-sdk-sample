@@ -6,19 +6,13 @@ _Note: This sample does not necessarily demonstrate the best use but rather feat
 
 # Getting started
 
-Set the appropriate `appId` in `js/default.js` file before running the sample.
+Set the appropriate `appId` in `js/main.js` file before running the sample.
 
 ```js
-function initializeFB() {
-    // set global alias
-    window.FB = FBWinJS;
+FB.options({
+    appId: '...'
+});
 
-    FB.options({
-        appId: '.....',
-        accessToken: localStorage.getItem('fb_access_token')
-    });
-
-}
 ```
 
 _**Note:**
