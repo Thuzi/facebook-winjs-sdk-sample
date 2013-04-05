@@ -1,5 +1,6 @@
 # Visual Studio Ignores
 [Bb]in/
+bld/
 Debug/
 obj/
 App_Data/
