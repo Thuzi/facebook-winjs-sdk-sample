@@ -18,7 +18,11 @@ FB.options({
 });
 
 ```
+# Setting up Open Graph
 
+Here is a example of how you set up the open graph for the custom actions:
+
+http://developers.facebook.com/docs/tutorials/ios-sdk-tutorial/publish-open-graph-story/#step1
 
 _**Note:**
 Make sure to enable `Internet (Client)` capability in `Package.appxmanifest` file.
