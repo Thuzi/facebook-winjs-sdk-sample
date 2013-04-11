@@ -320,6 +320,8 @@ function handlePublishOGError(e) {
 function reauthorizeForPublishPermissions() {
     logResponse("[reauthorizeForPublishPermissions] asking for additional permissions.");
 
+    // If successful, try publishing action again
+    // else, just show error
     askForPermissions('publish_actions', function (error, response) {
         if (error) {
             handleGenericError(error);
@@ -331,67 +333,52 @@ function reauthorizeForPublishPermissions() {
 
         }
     });
-	// If successful, try publishing action again
-	// else, just show error
-	//FB.login(
-	//	function (response) {
-	//		if (!response || response.error) {
-	//			handleGenericError(response.error);
-	//		} else {
-	//			publishOGAction(response);
-	//		}
-	//	}, {scope:'publish_actions'}
-	//);
+
+
 }
 
 function publishOGAction(response) {
 
-    askForPermissions('publish_actions', function (error, result) {
-        if (error) {
-            return;
+
+        var errorHandler = null;
+        // Handle if we came in via a reauth.
+        // Also avoid loops, set generic error
+        // handler if already reauthed.
+        if (!response || response.error) {
+            errorHandler = handlePublishOGError;
         } else {
-            if (result.access_token) {
-                var errorHandler = null;
-                // Handle if we came in via a reauth.
-                // Also avoid loops, set generic error
-                // handler if already reauthed.
-                if (!response || response.error) {
-                    errorHandler = handlePublishOGError;
-                } else {
-                    errorHandler = handleGenericError;
-                }
-                logResponse("Publishing action...");
-                var params = {
-                    "meal": meals[selectedMealIndex].url
-                };
-                if (selectedPlaceID) {
-                    params.place = selectedPlaceID;
-                }
-                var friendIDArrays = [];
-                for (var friendId in selectedFriends) {
-                    if (selectedFriends.hasOwnProperty(friendId)) {
-                        friendIDArrays.push(friendId);
-                    }
-                }
-                if (friendIDArrays.length > 0) {
-                    params.tags = friendIDArrays.join();
-                }
-                logResponse("Publish params " + params);
-                FB.api("/me/winjsscrumptious:eat",
-                    "POST",
-                    params,
-                    function (response) {
-                        logResponse(response);
-                        if (!response || response.error) {
-                            errorHandler(response.error);
-                        } else {
-                            handleOGSuccess(response);
-                        }
-                    }
-                );
+            errorHandler = handleGenericError;
+        }
+        logResponse("Publishing action...");
+        var params = {
+            "meal": meals[selectedMealIndex].url
+        };
+        if (selectedPlaceID) {
+            params.place = selectedPlaceID;
+        }
+        var friendIDArrays = [];
+        for (var friendId in selectedFriends) {
+            if (selectedFriends.hasOwnProperty(friendId)) {
+                friendIDArrays.push(friendId);
             }
         }
-    });
+        if (friendIDArrays.length > 0) {
+            params.tags = friendIDArrays.join();
+        }
+        logResponse("Publish params " + params);
+        FB.api("/me/winjsscrumptious:eat",
+            "POST",
+            params,
+            function (response) {
+                logResponse(response);
+                if (!response || response.error) {
+                    errorHandler(response.error);
+                } else {
+                    handleOGSuccess(response);
+                }
+            }
+        );
+
 
 
 }
