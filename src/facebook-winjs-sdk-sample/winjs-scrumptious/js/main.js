@@ -77,7 +77,7 @@ $(function () {
           });
 
           // Announce click handler
-          $("#announce").click(function() {
+          $("#announce").click(function () {
             publishOGAction(null);
           });
 
@@ -187,12 +187,24 @@ $('body').click(function(e){
 
 
 // AUTHENTICATION
-function loginClicked(e) {
-    // e.preventDefault();
+function loginClicked() {
+
+    askForPermissions('user_about_me', function (error, result) {
+        if (error) {
+            console.log(error);
+            return;
+        } else {
+            if (result.access_token) {
+                window.location.hash = '#menu';
+            }
+        }
+    });
+}
+
+function askForPermissions(scope, callback) {
 
     var redirectUri = 'https://www.facebook.com/connect/login_success.html',
-        opt = { appId: '438749336206495', scope:  'user_about_me,publish_actions'  };
-        loginUrl = FB.getLoginUrl(opt);
+        loginUrl = FB.getLoginUrl( {  scope: scope });
 
     try {
 
@@ -203,6 +215,7 @@ function loginClicked(e) {
             .then(function success(result) {
                 if (result.responseStatus == 2) {
                     console.log('error: ' + result.responseerrordetail);
+                    callback(new Error(result.responseerrordetail));
                     return;
                 }
 
@@ -217,19 +230,15 @@ function loginClicked(e) {
                     return;
                 }
 
-                // we now have the access token,
-
                 // set it as the default access token.
                 FB.setAccessToken(qs.access_token);
-
-                if (qs.access_token) {
-                    window.location.hash = '#menu';
-                }
-
+                
+                callback(null, qs);
 
             }, function error(err) {
                 console.log('Error Number: ' + err.number);
                 console.log('Error Message: ' + err.message);
+                callback(new Error(err.message));
             });
 
     } catch (e) {
@@ -309,59 +318,69 @@ function handlePublishOGError(e) {
 }
 
 function reauthorizeForPublishPermissions() {
-	logResponse("[reauthorizeForPublishPermissions] asking for additional permissions.");
-	// If successful, try publishing action again
-	// else, just show error
-	FB.login(
-		function (response) {
-			if (!response || response.error) {
-				handleGenericError(response.error);
-			} else {
-				publishOGAction(response);
-			}
-		}, {scope:'publish_actions'}
-	);
+    logResponse("[reauthorizeForPublishPermissions] asking for additional permissions.");
+
+    // If successful, try publishing action again
+    // else, just show error
+    askForPermissions('publish_actions', function (error, response) {
+        if (error) {
+            handleGenericError(error);
+            return;
+        } else {
+            if (response.access_token) {
+                publishOGAction(response);
+            }
+
+        }
+    });
+
+
 }
 
 function publishOGAction(response) {
-	var errorHandler = null;
-	// Handle if we came in via a reauth.
-	// Also avoid loops, set generic error
-	// handler if already reauthed.
-	if (!response || response.error) {
-		errorHandler = handlePublishOGError;
-	} else {
-		errorHandler = handleGenericError;
-	}
-	logResponse("Publishing action...");
-	var params = {
-		"meal" : meals[selectedMealIndex].url
-	};
-	if (selectedPlaceID) {
-		params.place = selectedPlaceID;
-	}
-	var friendIDArrays = [];
-	for (var friendId in selectedFriends) {
-		if (selectedFriends.hasOwnProperty(friendId)) {
-			friendIDArrays.push(friendId);
-		}
-	}
-	if (friendIDArrays.length > 0) {
-		params.tags = friendIDArrays.join();
-	}
-	logResponse("Publish params " + params);
-	FB.api("/me/winjsscrumptious:eat",
-    	"POST",
-    	params,
-    	function (response) {
-    		logResponse(response);
-    		if (!response || response.error) {
-    			errorHandler(response.error);
-    		} else {
-    			handleOGSuccess(response);
-    		}
-    	}
-	);
+
+
+        var errorHandler = null;
+        // Handle if we came in via a reauth.
+        // Also avoid loops, set generic error
+        // handler if already reauthed.
+        if (!response || response.error) {
+            errorHandler = handlePublishOGError;
+        } else {
+            errorHandler = handleGenericError;
+        }
+        logResponse("Publishing action...");
+        var params = {
+            "meal": meals[selectedMealIndex].url
+        };
+        if (selectedPlaceID) {
+            params.place = selectedPlaceID;
+        }
+        var friendIDArrays = [];
+        for (var friendId in selectedFriends) {
+            if (selectedFriends.hasOwnProperty(friendId)) {
+                friendIDArrays.push(friendId);
+            }
+        }
+        if (friendIDArrays.length > 0) {
+            params.tags = friendIDArrays.join();
+        }
+        logResponse("Publish params " + params);
+        FB.api("/me/winjsscrumptious:eat",
+            "POST",
+            params,
+            function (response) {
+                logResponse(response);
+                if (!response || response.error) {
+                    errorHandler(response.error);
+                } else {
+                    handleOGSuccess(response);
+                }
+            }
+        );
+
+
+
 }
 
 function showPublishConfirmation() {
