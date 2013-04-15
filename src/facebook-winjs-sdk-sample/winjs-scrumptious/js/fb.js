@@ -5,8 +5,9 @@
         var isWinJS = WinJS ? true : false;
         var   request = isWinJS ? null : require('request')
             , crypto  = isWinJS ? null : require('crypto')
-            , version = isWinJS ? '0.0.13' : require(require('path').resolve(__dirname, 'package.json')).version
+            , version = isWinJS ? '0.0.14' : require(require('path').resolve(__dirname, 'package.json')).version
             , getLoginUrl
+            , pingFacebook
             , api
             , graph
             , rest
@@ -154,28 +155,20 @@
         pingFacebook = function (appId) {
             try {
                 if (isWinJS) {
-                    var method = 'POST';
-                    var uri = 'https://www.facebook.com/impression.php';
-                    var encodedData = {
-                        plugin: 'featured_resources',
-                        payload: {
+                    WinJS.xhr({
+                        type: 'post',
+                        url: 'https://www.facebook.com/impression.php',
+                        headers: { "Content-type": "application/x-www-form-urlencoded" },
+                        data: 'plugin=featured_resources&payload=' + encodeURIComponent(JSON.stringify({
                             resource: 'thuzi_winjssdk',
                             appid: appId,
                             version: version
-                        }
-                    };
-
-                    var body = JSON.parse(encodedData);
-
-                    WinJS.xhr({
-                        type: method,
-                        url: uri,
-                        data: body
+                        }))
                     })
                     .done(function success(req) {
                         // ignore response
                     }
-                    , function error(req) {
+                    , function error(err) {
                         // ignore error
                     });
 
@@ -185,6 +178,7 @@
                 // Eat the error
             }
         };
+
         /**
          *
          * @access public
